@@ -1,0 +1,144 @@
+﻿Build1=SADRA_GAME,com.snake.sadragame
+File1=About.bal
+File10=comicz.ttf
+File11=Game_Voer.bal
+File12=head.png
+File13=icon.png
+File14=Khandevane.ttf
+File15=Layout_Game.bal
+File16=Layout_Setting.bal
+File17=Menu.bal
+File18=Over.png
+File19=Over_Low.bal
+File2=about.png
+File20=over_low.png
+File21=Split_Scrren.bal
+File22=Split_Scrren.png
+File23=sr1.png
+File3=apple.png
+File4=B Yekan.TTF
+File5=b1.png
+File6=body.png
+File7=comic.ttf
+File8=comicbd.ttf
+File9=comici.ttf
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup11=Default Group
+FileGroup12=Default Group
+FileGroup13=Default Group
+FileGroup14=Default Group
+FileGroup15=Default Group
+FileGroup16=Default Group
+FileGroup17=Default Group
+FileGroup18=Default Group
+FileGroup19=Default Group
+FileGroup2=Default Group
+FileGroup20=Default Group
+FileGroup21=Default Group
+FileGroup22=Default Group
+FileGroup23=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+IconFile=
+Library1=core
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~
+Module1=Activity_Help
+Module2=Game
+Module3=Layout_About
+Module4=Layout_Game_Over
+Module5=Starter
+Module6=Active_Setting
+NumberOfFiles=23
+NumberOfLibraries=1
+NumberOfModules=6
+Version=9.3
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: مار (خیانچه_ پیانچه)
+	#VersionCode: 5
+	#VersionName: 5.1.0
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: landscape
+	#CanInstallToExternalStorage: True
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: True
+	#IncludeTitle: False
+#End Region
+
+Sub Process_Globals 
+	
+
+End Sub
+
+Sub Globals
+	
+	Dim T1 As Timer ' for Split_Scrren
+
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("Split_Scrren")
+	
+	T1.Initialize("T1",3000)
+	T1.Enabled=True
+	
+	
+
+End Sub
+
+Sub T1_Tick
+	Activity.LoadLayout("Menu")
+	ToastMessageShow("خیر انشا الله ...",True)
+	T1.Enabled=False
+End Sub
+
+Sub Activity_Resume
+	
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+
+Sub btn_Start_Game_Click
+	StartActivity(Active_Setting)
+	ToastMessageShow("خیر انشا الله ...",True)
+End Sub
+
+Sub About_Click
+	StartActivity(Layout_About)
+	ToastMessageShow("خیر انشا الله ...",True)
+End Sub
+
+Sub Help_Click
+	StartActivity(Activity_Help)
+	ToastMessageShow("خیر انشا الله ...",True)
+End Sub
+
+Sub Activity_KeyPress (KeyCode As Int) As Boolean 'Return True to consume the event
+	If KeyCode = KeyCodes.KEYCODE_BACK Then
+		Dim Res As Int
+		Res = Msgbox2("آیا مایل به خروج از بازی هستید ؟","خروج","بله","","خیر",LoadBitmap(File.DirAssets,"icon.png"))
+		If Res = DialogResponse.POSITIVE Then
+			ToastMessageShow("Developer : Muhammad Sadra Burommad",False)
+			ExitApplication
+		Else
+			Return True
+		End If
+	End If
+End Sub
+
+
+Sub btn_Exit_Click
+	Activity_KeyPress(4)
+End Sub
